@@ -1,0 +1,20 @@
+@createdAt = {{$datetime iso8601}}
+###
+POST http://14.42.170.22:7080/epcis/v2/events
+content-type: application/json
+authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhbGljZSIsImlhdCI6MTY4MDU4NTkwN30.FoEsYTpUbu9R08M6XsRyTzDXaXFT-vV7UgWNnSxLZe0
+
+{
+    "@context": "https://gs1.github.io/EPCIS/epcis-context.jsonld",
+    "eventID": "https://{{$guid}}",
+    "type": "ObjectEvent",
+    "action": "OBSERVE",
+    "bizStep": "shipping",
+    "disposition": "in_transit",
+    "epcList": ["urn:epc:id:sgtin:0614141.107346.2017","urn:epc:id:sgtin:0614141.107346.2018"],
+    "eventTime": "{{createdAt}}",
+    "eventTimeZoneOffset": "-06:00",
+    "readPoint": {"id": "urn:epc:id:sgln:0614142.56346.1234", "http://example//readPoint//value":"readpointValue"},
+    "bizTransactionList": [  {"type": "po", "bizTransaction": "http://transaction.acme.com/po/12345678" }],
+    "ext:test":4  
+}
